@@ -1,0 +1,24 @@
+<form id="formCurriculo">
+
+<input type="text" placeholder="Seu nome" required>
+<input type="email" placeholder="Seu email" required>
+<input type="file" required>
+
+<button type="submit">Enviar candidatura</button>
+
+</form>
+
+<p id="mensagem"></p>
+
+<script>
+
+document.getElementById("formCurriculo").addEventListener("submit", function(event){
+
+event.preventDefault();
+
+document.getElementById("mensagem").innerHTML =
+"✅ Currículo enviado com sucesso! Agradecemos pelo envio. Você receberá um retorno em até 24 horas.";
+
+});
+
+</script>
