@@ -1,56 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site de Vagas</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<meta charset="UTF-8">
-<title>ZyoKedln</title>
+    body {
+      background-color: #121212; /* fundo preto */
+      color: #fff; /* texto branco */
+      padding: 20px;
+    }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
 
-<link rel="stylesheet" href="css/style.css">
+    /* Container de vagas */
+    #vagas-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
 
+    /* Card de vaga */
+    .vaga-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 15px;
+      width: 300px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .vaga-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 10px #555;
+    }
+
+    .vaga-card h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .vaga-card p {
+      margin-bottom: 10px;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+
+    .vaga-card button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .vaga-card button:hover {
+      background-color: #555;
+    }
+
+    /* Mensagem de confirmação */
+    #mensagem-confirmacao {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00ff00; /* verde para confirmação */
+    }
+
+    /* Responsividade */
+    @media (max-width: 700px) {
+      #vagas-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .vaga-card {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
+<body>
 
+  <h1>Vagas Disponíveis</h1>
 
+  <!-- Container de cards -->
+  <div id="vagas-container"></div>
 
+  <!-- Mensagem de confirmação -->
+  <div id="mensagem-confirmacao" style="display:none;"></div>
 
+  <script>
+    const vagasContainer = document.getElementById('vagas-container');
 
-</body>
+    // Função para gerar um card de vaga
+    function gerarVaga(titulo, empresa, descricao) {
+      const card = document.createElement('div');
+      card.classList.add('vaga-card');
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
+      card.innerHTML = `
+        <h3>${titulo}</h3>
+        <p><strong>Empresa:</strong> ${empresa}</p>
+        <p>${descricao}</p>
+        <button onclick="enviarCurriculo('${titulo}')">Candidatar-se</button>
+      `;
 
-<a class="navbar-brand" href="index.html">ZyoKedln</a>
+      vagasContainer.appendChild(card);
+    }
 
-<div>
+    // Função de envio de currículo
+    function enviarCurriculo(vaga) {
+      const msg = document.getElementById('mensagem-confirmacao');
+      msg.innerText = `Currículo enviado para a vaga de ${vaga}! Retorno em até 24 horas.`;
+      msg.style.display = 'block';
+    }
 
-<a class="btn btn-outline-light me-2" href="vagas.html">
-Ver vagas
-</a>
-
-<a class="btn btn-success" href="divulgar.html">
-Divulgar emprego
-</a>
-
-</div>
-
-</div>
-</nav>
-
-<div class="container text-center mt-5">
-
-<h1 class="mb-4">
-Conectando empresas e profissionais
-</h1>
-
-<p class="lead">
-Encontre oportunidades ou publique vagas de emprego facilmente.
-</p>
-
-</div>
-
+    // Exemplos de vagas iniciais
+    gerarVaga('Desenvolvedor Web', 'Empresa X', 'Desenvolvimento de sites e aplicações web.');
+    gerarVaga('Designer Gráfico', 'Empresa Y', 'Criação de artes digitais e material gráfico.');
+    gerarVaga('Analista de Marketing', 'Empresa Z', 'Planejamento e execução de campanhas digitais.');
+  </script>
 </body>
 </html>
-
-<div class="vaga" onclick="window.location.href='curriculo.html'"></div>
